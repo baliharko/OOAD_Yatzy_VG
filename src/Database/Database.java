@@ -5,16 +5,23 @@ import java.util.List;
 
 public class Database {
 
+    private static Database single_instance = null;
     private static final String FILEPATH = ""; // Temp
-    private List<Score> listofScores;
+    private List<Score> listOfScores;
 
-    public Database() {
-        this.listofScores = new ArrayList<>();
+    private Database() {
+        this.listOfScores = new ArrayList<>();
+        Database.single_instance = this;
+        System.out.println("Database object created.");
+    }
+
+    public static Database getInstance() {
+        return single_instance == null ? new Database() : null;
     }
 
     public void addScore(Score score) {
         // Sort before
-        this.listofScores.add(score);
+        this.listOfScores.add(score);
     }
 
     public void loadData() {
@@ -24,5 +31,5 @@ public class Database {
     public void saveData() {
         // Saves data to .ser file.
     }
-}
 
+}
