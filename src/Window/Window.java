@@ -1,6 +1,8 @@
 package Window;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicBorders;
 import java.awt.*;
 import java.util.Random;
 
@@ -20,6 +22,8 @@ public class Window extends JFrame {
         this.setLayout(new BorderLayout());
         table.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         table.setRowHeight(51);
+        table.setGridColor(Color.BLACK);
+
         panel.add(new JButton("Kasta"));
         panel.add(new JButton("Spara highscore"));
         panel.add(new JButton("Se highscore"));
