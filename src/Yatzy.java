@@ -5,4 +5,21 @@
  * Project: JAVA20-OOAD-Projektarbete-Grupp-10 <br>
  */
 public class Yatzy {
+    boolean playAgain = true;
+    Database database;
+
+    Yatzy(){
+        database = new Database();
+        while(playAgain){
+            new Game(this);
+        }
+    }
+
+    public void quit(){
+        playAgain = false;
+    }
+
+    public Database getDatabase(){
+        return database;
+    }
 }
