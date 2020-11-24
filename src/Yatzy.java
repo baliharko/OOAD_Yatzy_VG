@@ -1,3 +1,5 @@
+import Database.Database;
+
 /**
  * Created by Oscar Norman <br>
  * Date: 2020-11-24   <br>
@@ -6,10 +8,9 @@
  */
 public class Yatzy {
     boolean playAgain = true;
-    Database database;
+    Database database = Database.getInstance();
 
     Yatzy(){
-        database = new Database();
         while(playAgain){
             new Game(this);
         }
