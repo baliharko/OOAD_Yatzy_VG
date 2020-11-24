@@ -1,3 +1,5 @@
+package Game;
+
 import java.util.Random;
 
 /**
@@ -11,7 +13,7 @@ public class Dice {
 
     private int value;
 
-    Dice(){
+    public Dice(){
         roll();
     }
 

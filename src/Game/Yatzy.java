@@ -1,3 +1,5 @@
+package Game;
+
 import Database.Database;
 
 /**
@@ -12,7 +14,7 @@ public class Yatzy {
 
     Yatzy(){
         while(playAgain){
-            new Game(this);
+            new Game();
         }
     }
 
