@@ -1,8 +1,5 @@
 package Game;
 
-import javax.swing.*;
-import java.lang.reflect.Array;
-
 /**
  * Created by Hanna Edlund
  * Date: 2020-11-24
@@ -16,17 +13,19 @@ public class Game {
     Dice[] dices = new Dice[5];
 
     Game(){
-        for (int i = 0; i < dices.length; i++) {
-            dices[i] = new Dice();
-            System.out.println("Tärning " + (i+1) + ": " + dices[i].getValue());
-        }
-
+        createDices();
         System.out.println("RULLA TÄRNINGARNA");
         for (int i = 0; i < dices.length; i++) {
             dices[i].roll();
             System.out.println("Tärning " + (i+1) + ": " + dices[i].getValue());
         }
+    }
 
+    public void createDices(){
+        for (int i = 0; i < dices.length; i++) {
+            dices[i] = new Dice();
+            System.out.println("Tärning " + (i+1) + ": " + dices[i].getValue());
+        }
     }
 
     public static void main(String[] args) {
