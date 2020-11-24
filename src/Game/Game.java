@@ -10,11 +10,11 @@ import java.lang.reflect.Array;
  */
 public class Game {
 
-    Player player;
-    int score;
+    private Player player;
+    private int score;
     Dice[] dices = new Array[5];
 
-    Game(){
-
+    Game(Player player){
+        this.player = player;
     }
 }
