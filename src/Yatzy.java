@@ -11,11 +11,15 @@ public class Yatzy {
     Yatzy(){
         database = new Database();
         while(playAgain){
-            new Game(this, database);
+            new Game(this);
         }
     }
 
     public void quit(){
         playAgain = false;
+    }
+
+    public Database getDatabase(){
+        return database;
     }
 }
