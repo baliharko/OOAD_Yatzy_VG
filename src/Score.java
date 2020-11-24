@@ -8,8 +8,33 @@ import java.time.LocalDate;
  */
 public class Score {
 
-    public Score() {
+    private int score;
+    private Player player;
+    private LocalDate date;
 
+    public Score(int score, Player player) {
+        this.player = player;
+        this.score = score;
+        this.date = LocalDate.now();
+        calculateScore();
     }
 
+    public void calculateScore() {
+        if (this.score >= 42) {this.score += 35;}
+    }
+
+    public static void main(String[] args) {
+        Score score = new Score(41, new Player());
+        System.out.println(score.getScore());
+        System.out.println(score.getDate());
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+
+    public LocalDate getDate() {
+        return date;
+    }
 }
