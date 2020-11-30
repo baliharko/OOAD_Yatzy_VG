@@ -26,17 +26,15 @@ public class Score {
     }
 
     public static void main(String[] args) {
-        Score score = new Score(41, new Player());
-        System.out.println(score.getScore());
-        System.out.println(score.getDate());
+        Score score = new Score(42, new Player("Orvar Karlsson"));
+        System.out.println(score.toString());
     }
 
-    public int getScore() {
-        return score;
+    @Override
+    public String toString() {
+        return "Poäng: " + score +
+                "\nSpelare: " + player.getName() +
+                "\nDatum: " + date;
     }
-
-
-    public LocalDate getDate() {
-        return date;
-    }
+    
 }
