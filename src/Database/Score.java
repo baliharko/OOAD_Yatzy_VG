@@ -1,8 +1,9 @@
 package Database;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Score {
+public class Score implements Serializable {
 
     private String playerName;
     private int score;

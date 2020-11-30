@@ -1,35 +1,64 @@
 package Database;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
 
-    private static Database single_instance = null;
-    private static final String FILEPATH = ""; // Temp
+    private static final Database SINGLE_INSTANCE = new Database();
+    private static final String FILEPATH = "scores.ser";
     private List<Score> listOfScores;
 
     private Database() {
         this.listOfScores = new ArrayList<>();
-        Database.single_instance = this;
+        this.createFile();
+        this.loadData();
         System.out.println("Database object created.");
     }
 
     public static Database getInstance() {
-        return single_instance == null ? new Database() : null;
+        return SINGLE_INSTANCE;
     }
 
     public void addScore(Score score) {
-        // Sort before
+        // TODO - Sort before
         this.listOfScores.add(score);
     }
 
     public void loadData() {
-        // Loads data from .ser file.
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(FILEPATH))) {
+            this.listOfScores = (List<Score>) in.readObject();
+        } catch (EOFException e) {
+            System.out.println("End of file reached.");
+        } catch (Exception e) {
+            System.out.println("Could not load from file.");
+            e.printStackTrace();
+        }
     }
 
     public void saveData() {
-        // Saves data to .ser file.
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILEPATH))) {
+            out.writeObject(this.listOfScores);
+            System.out.println("Saved scores to file.");
+        } catch (Exception e) {
+            System.out.println("Could not write to file.");
+            e.printStackTrace();
+        }
     }
 
+    private void createFile() {
+        if (!Files.exists(Path.of(FILEPATH))) {
+            try {
+                Files.createFile(Path.of(FILEPATH));
+                System.out.println("New file created.");
+            } catch (IOException e) {
+                System.out.println("Could not create file.");
+                e.printStackTrace();
+            }
+        }
+    }
 }
