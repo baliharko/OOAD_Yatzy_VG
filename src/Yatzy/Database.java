@@ -1,6 +1,4 @@
-package Database;
-
-import Yatzy.Score;
+package Yatzy;
 
 import java.util.ArrayList;
 import java.util.List;
