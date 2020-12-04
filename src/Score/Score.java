@@ -11,11 +11,9 @@ import java.time.LocalDate;
 public class Score {
 
     private int score;
-    private Player player;
     private LocalDate date;
 
-    public Score(int score, Player player) {
-        this.player = player;
+    public Score(int score) {
         this.score = score;
         this.date = LocalDate.now();
         calculateScore();
@@ -26,15 +24,13 @@ public class Score {
     }
 
     public static void main(String[] args) {
-        Score score = new Score(42, new Player("Orvar Karlsson"));
+        Score score = new Score(42);
         System.out.println(score.toString());
     }
 
     @Override
     public String toString() {
         return "Poäng: " + score +
-                "\nSpelare: " + player.getName() +
                 "\nDatum: " + date;
     }
-    
 }
