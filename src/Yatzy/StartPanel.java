@@ -10,7 +10,7 @@ public class StartPanel extends JPanel {
      */
 
     // Backgroundcolor
-    Color color = Color.GREEN;
+    Color color = Color.GREEN; // Test Färg
 
     // Panels
     JPanel topPanel = new JPanel(new GridLayout(1,2,10,10));
@@ -31,6 +31,7 @@ public class StartPanel extends JPanel {
         setUpAndAddToggleButtons();
         setUpAndAddTextfield();
         setUpAndAddStartGameButton();
+        setUpToggleListener();
 
         this.revalidate();
         this.repaint();
@@ -53,10 +54,10 @@ public class StartPanel extends JPanel {
 
     public void setUpAndAddToggleButtons(){
         rankedGameButton.setOpaque(true);
-        rankedGameButton.setBorder(BorderFactory.createLineBorder(color,40));
+        rankedGameButton.setBorder(BorderFactory.createLineBorder(color,30));
         rankedGameButton.setFont(new Font("SansSerif", Font.BOLD,20));
         notRankedGameButton.setOpaque(true);
-        notRankedGameButton.setBorder(BorderFactory.createLineBorder(color,40));
+        notRankedGameButton.setBorder(BorderFactory.createLineBorder(color,30));
         notRankedGameButton.setFont(new Font("SansSerif", Font.BOLD,20));
         topPanel.add(rankedGameButton);
         topPanel.add(notRankedGameButton);
@@ -65,12 +66,53 @@ public class StartPanel extends JPanel {
     public void setUpAndAddTextfield(){
         nameField.setHorizontalAlignment(SwingConstants.CENTER);
         nameField.setFont(new Font("SansSerif",Font.ITALIC,25));
+        nameField.setVisible(false);
         middlePanel.add(nameField, CENTER_ALIGNMENT);
     }
 
     public void setUpAndAddStartGameButton(){
         startGame.setFont(new Font("SansSerif", Font.BOLD,20));
+        startGame.setEnabled(false);
         bottomPanel.add(startGame);
     }
 
+    /***
+     * Ordna så att startknappen blir enablad först när man skrivit in något i textfältet.
+      */
+
+    public void setUpToggleListener(){
+        rankedGameButton.addActionListener(l -> {
+            if(rankedGameButton.isSelected()){
+                notRankedGameButton.setSelected(false);
+                nameField.setVisible(true);
+                repaintTextField();
+            }
+            else if(!rankedGameButton.isSelected()){
+                nameField.setVisible(false);
+                startGame.setEnabled(false);
+                repaintTextField();
+            }
+        });
+
+        notRankedGameButton.addActionListener(l -> {
+            if(notRankedGameButton.isSelected()){
+                rankedGameButton.setSelected(false);
+                nameField.setVisible(false);
+                startGame.setEnabled(true);
+                repaintTextField();
+            }
+            else if(!notRankedGameButton.isSelected()){
+                startGame.setEnabled(false);
+            }
+        });
+    }
+
+    private void repaintTextField(){
+        middlePanel.revalidate();
+        middlePanel.repaint();
+    }
+
+    public JButton getStartGame() {
+        return startGame;
+    }
 }
