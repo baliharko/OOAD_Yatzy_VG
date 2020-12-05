@@ -20,10 +20,10 @@ public class StartPanel extends JPanel {
     // Buttons
     JToggleButton rankedGameButton = new JToggleButton("Ranked Game");
     JToggleButton notRankedGameButton = new JToggleButton("Not ranked Game");
-    JButton startGame = new JButton("Start Game");
+    JButton startGameButton = new JButton("Start Game");
 
     // Textfield
-    JTextField nameField = new JTextField(14);
+    JTextField nameField = new JTextField("",14);
 
     public StartPanel(){
         setUpThisJPanel();
@@ -71,38 +71,34 @@ public class StartPanel extends JPanel {
     }
 
     public void setUpAndAddStartGameButton(){
-        startGame.setFont(new Font("SansSerif", Font.BOLD,20));
-        startGame.setEnabled(false);
-        bottomPanel.add(startGame);
+        startGameButton.setFont(new Font("SansSerif", Font.BOLD,20));
+        startGameButton.setEnabled(false);
+        bottomPanel.add(startGameButton);
     }
-
-    /***
-     * Ordna så att startknappen blir enablad först när man skrivit in något i textfältet.
-      */
 
     public void setUpToggleListener(){
         rankedGameButton.addActionListener(l -> {
             if(rankedGameButton.isSelected()){
                 notRankedGameButton.setSelected(false);
                 nameField.setVisible(true);
+                startGameButton.setEnabled(true);
                 repaintTextField();
             }
             else if(!rankedGameButton.isSelected()){
                 nameField.setVisible(false);
-                startGame.setEnabled(false);
+                startGameButton.setEnabled(false);
                 repaintTextField();
             }
         });
-
         notRankedGameButton.addActionListener(l -> {
             if(notRankedGameButton.isSelected()){
                 rankedGameButton.setSelected(false);
                 nameField.setVisible(false);
-                startGame.setEnabled(true);
+                startGameButton.setEnabled(true);
                 repaintTextField();
             }
             else if(!notRankedGameButton.isSelected()){
-                startGame.setEnabled(false);
+                startGameButton.setEnabled(false);
             }
         });
     }
@@ -112,7 +108,11 @@ public class StartPanel extends JPanel {
         middlePanel.repaint();
     }
 
-    public JButton getStartGame() {
-        return startGame;
+    public JTextField getNameField() {
+        return nameField;
+    }
+
+    public JButton getStartGameButton() {
+        return startGameButton;
     }
 }
