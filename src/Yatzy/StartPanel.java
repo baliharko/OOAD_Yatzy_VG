@@ -25,10 +25,14 @@ public class StartPanel extends JPanel {
     // Textfield
     JTextField nameField = new JTextField("",14);
 
+    // Label
+    JLabel nameLabel = new JLabel("Enter your name: ");
+
     public StartPanel(){
         setUpThisJPanel();
         setUpJPanels();
         setUpAndAddToggleButtons();
+        setUpAndAddLabel();
         setUpAndAddTextfield();
         setUpAndAddStartGameButton();
         setUpToggleListener();
@@ -63,6 +67,12 @@ public class StartPanel extends JPanel {
         topPanel.add(notRankedGameButton);
     }
 
+    public void setUpAndAddLabel(){
+        nameLabel.setFont(new Font("SansSerif", Font.BOLD, 25));
+        nameLabel.setVisible(false);
+        middlePanel.add(nameLabel, CENTER_ALIGNMENT);
+    }
+
     public void setUpAndAddTextfield(){
         nameField.setHorizontalAlignment(SwingConstants.CENTER);
         nameField.setFont(new Font("SansSerif",Font.ITALIC,25));
@@ -82,10 +92,12 @@ public class StartPanel extends JPanel {
                 notRankedGameButton.setSelected(false);
                 nameField.setVisible(true);
                 startGameButton.setEnabled(true);
+                nameLabel.setVisible(true);
                 repaintTextField();
             }
             else if(!rankedGameButton.isSelected()){
                 nameField.setVisible(false);
+                nameLabel.setVisible(false);
                 startGameButton.setEnabled(false);
                 repaintTextField();
             }
@@ -94,6 +106,7 @@ public class StartPanel extends JPanel {
             if(notRankedGameButton.isSelected()){
                 rankedGameButton.setSelected(false);
                 nameField.setVisible(false);
+                nameLabel.setVisible(false);
                 startGameButton.setEnabled(true);
                 repaintTextField();
             }
