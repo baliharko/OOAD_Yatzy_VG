@@ -16,7 +16,6 @@ public class YatzyPanel extends JPanel {
     JLabel tableLabel = new JLabel(" Omgång      Poäng ");
     JPanel buttonPanel = new JPanel(new GridLayout(1,3));
     JPanel dicePanel = new JPanel(new GridLayout(3,3));
-    JLabel name = new JLabel("Namn: Orvar Karlsson");
 
     // Buttons
     JButton roll = new JButton("Kasta (3)");
@@ -34,7 +33,7 @@ public class YatzyPanel extends JPanel {
     int rolls = 3; // Ska flyttas till controller
 
     public YatzyPanel(){
-        setUpJPanel();
+        setUpThisJPanel();
         setUpPanels();
         setUpScoreBoard();
         setUpDices();
@@ -44,7 +43,7 @@ public class YatzyPanel extends JPanel {
         this.repaint();
     }
 
-    public void setUpJPanel(){
+    public void setUpThisJPanel(){
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(500, 480));
     }
@@ -61,7 +60,6 @@ public class YatzyPanel extends JPanel {
         buttonPanel.add(show);
         buttonPanel.setPreferredSize(new Dimension(500,40));
         this.add(buttonPanel,BorderLayout.SOUTH);
-        this.add(name, BorderLayout.NORTH);
         dicePanel.setBackground(Color.WHITE);
         this.add(dicePanel);
     }

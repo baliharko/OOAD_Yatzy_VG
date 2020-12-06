@@ -112,6 +112,14 @@ public class StartPanel extends JPanel {
         return nameField;
     }
 
+    public JToggleButton getRankedGameButton() {
+        return rankedGameButton;
+    }
+
+    public JToggleButton getNotRankedGameButton() {
+        return notRankedGameButton;
+    }
+
     public JButton getStartGameButton() {
         return startGameButton;
     }

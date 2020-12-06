@@ -7,11 +7,8 @@ public class YatzyWindow extends JFrame {
     JPanel mainPanel = new JPanel();
     StartPanel startPanel = new StartPanel();
     YatzyPanel yatzyPanel = new YatzyPanel();
-    JButton startButton;
-    JToggleButton rankedGame; //
 
     public YatzyWindow(){
-        startButton = startPanel.startGameButton;
         setUpJFrame();
         changePanelTo(startPanel);
         setUpStartButtonListener();
@@ -33,12 +30,18 @@ public class YatzyWindow extends JFrame {
     }
 
     public void setUpStartButtonListener(){
-        startButton.addActionListener(l -> {
-            if(startPanel.getNameField().getText().length() > 2){
-                System.out.println("Välkommen: " + startPanel.getNameField().getText());
+        startPanel.getStartGameButton().addActionListener(l -> {
+            if (startPanel.getNotRankedGameButton().isSelected()){
+                this.setTitle("Just playing for fun... loser");
                 changePanelTo(yatzyPanel);
             }
-            else System.out.println("Du måste ange ett namn/alias med minst 3 tecken.");
+            else if (startPanel.getRankedGameButton().isSelected()){
+                if (startPanel.getNameField().getText().length() > 2){
+                    this.setTitle("Name: " + startPanel.getNameField().getText());
+                    changePanelTo(yatzyPanel);
+                }
+                else System.out.println("Du måste ange ett namn/alias med minst 3 tecken.");
+            }
         });
     }
 
