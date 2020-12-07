@@ -91,7 +91,7 @@ public class YatzyPanel extends JPanel {
             if(i%2 == 0){
                 dices[count] = new JToggleButton("1");
                 dices[count].setOpaque(true);
-                dices[count].setBackground(Color.PINK);
+                dices[count].setBackground(Color.GREEN);
                 dices[count].setFont(new Font("MonoSpaced", Font.BOLD, 100));
                 dices[count].setBorder(BorderFactory.createLineBorder(Color.WHITE,15));
                 dicePanel.add(dices[count]);
@@ -118,6 +118,12 @@ public class YatzyPanel extends JPanel {
             }
         };
         roll.addActionListener(rolling);
+    }
+
+    public void setColor(Color color) {
+        for (JToggleButton die : dices) {
+            die.setBackground(color);
+        }
     }
 }
 

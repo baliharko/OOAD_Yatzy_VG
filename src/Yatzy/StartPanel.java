@@ -1,6 +1,7 @@
 package Yatzy;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class StartPanel extends JPanel {
@@ -92,12 +93,18 @@ public class StartPanel extends JPanel {
                 notRankedGameButton.setSelected(false);
                 nameField.setVisible(true);
                 startGameButton.setEnabled(true);
+                rankedGameButton.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 30));
+                notRankedGameButton.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,30));
+                this.setBackground(Color.LIGHT_GRAY);
                 nameLabel.setVisible(true);
                 repaintTextField();
             }
             else if(!rankedGameButton.isSelected()){
                 nameField.setVisible(false);
                 nameLabel.setVisible(false);
+                rankedGameButton.setBorder(BorderFactory.createLineBorder(color, 30));
+                notRankedGameButton.setBorder(BorderFactory.createLineBorder(color,30));
+                this.setBackground(color);
                 startGameButton.setEnabled(false);
                 repaintTextField();
             }
@@ -107,11 +114,17 @@ public class StartPanel extends JPanel {
                 rankedGameButton.setSelected(false);
                 nameField.setVisible(false);
                 nameLabel.setVisible(false);
+                notRankedGameButton.setBorder(BorderFactory.createLineBorder(Color.PINK,30));
+                rankedGameButton.setBorder(BorderFactory.createLineBorder(Color.PINK, 30));
+                this.setBackground(Color.PINK);
                 startGameButton.setEnabled(true);
                 repaintTextField();
             }
             else if(!notRankedGameButton.isSelected()){
                 startGameButton.setEnabled(false);
+                rankedGameButton.setBorder(BorderFactory.createLineBorder(color, 30));
+                notRankedGameButton.setBorder(BorderFactory.createLineBorder(color,30));
+                this.setBackground(color);
             }
         });
     }

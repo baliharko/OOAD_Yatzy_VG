@@ -4,14 +4,21 @@ import javax.swing.*;
 
 public class YatzyWindow extends JFrame {
 
-    JPanel mainPanel = new JPanel();
-    StartPanel startPanel = new StartPanel();
-    YatzyPanel yatzyPanel = new YatzyPanel();
+    private JPanel mainPanel = new JPanel();
+    private StartPanel startPanel = new StartPanel();
+    private YatzyPanel yatzyPanel = new YatzyPanel();
 
     public YatzyWindow(){
+
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            SwingUtilities.updateComponentTreeUI(this);
+        } catch (Exception e) {
+            System.out.println("Error setting the LAF..." + e);
+        }
+
         setUpJFrame();
         changePanelTo(startPanel);
-        setUpStartButtonListener();
     }
 
     public void setUpJFrame(){
@@ -29,20 +36,12 @@ public class YatzyWindow extends JFrame {
         mainPanel.repaint();
     }
 
-    public void setUpStartButtonListener(){
-        startPanel.getStartGameButton().addActionListener(l -> {
-            if (startPanel.getNotRankedGameButton().isSelected()){
-                this.setTitle("Just playing for fun... loser");
-                changePanelTo(yatzyPanel);
-            }
-            else if (startPanel.getRankedGameButton().isSelected()){
-                if (startPanel.getNameField().getText().length() > 2){
-                    this.setTitle("Name: " + startPanel.getNameField().getText());
-                    changePanelTo(yatzyPanel);
-                }
-                else System.out.println("Du måste ange ett namn/alias med minst 3 tecken.");
-            }
-        });
+    public StartPanel getStartPanel() {
+        return startPanel;
+    }
+
+    public YatzyPanel getYatzyPanel() {
+        return yatzyPanel;
     }
 
     public static void main(String[] args) {
