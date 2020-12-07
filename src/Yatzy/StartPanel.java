@@ -1,6 +1,7 @@
 package Yatzy;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class StartPanel extends JPanel {
@@ -25,10 +26,14 @@ public class StartPanel extends JPanel {
     // Textfield
     JTextField nameField = new JTextField("",14);
 
+    // Label
+    JLabel nameLabel = new JLabel("Enter your name: ");
+
     public StartPanel(){
         setUpThisJPanel();
         setUpJPanels();
         setUpAndAddToggleButtons();
+        setUpAndAddLabel();
         setUpAndAddTextfield();
         setUpAndAddStartGameButton();
         setUpToggleListener();
@@ -63,6 +68,12 @@ public class StartPanel extends JPanel {
         topPanel.add(notRankedGameButton);
     }
 
+    public void setUpAndAddLabel(){
+        nameLabel.setFont(new Font("SansSerif", Font.BOLD, 25));
+        nameLabel.setVisible(false);
+        middlePanel.add(nameLabel, CENTER_ALIGNMENT);
+    }
+
     public void setUpAndAddTextfield(){
         nameField.setHorizontalAlignment(SwingConstants.CENTER);
         nameField.setFont(new Font("SansSerif",Font.ITALIC,25));
@@ -82,10 +93,18 @@ public class StartPanel extends JPanel {
                 notRankedGameButton.setSelected(false);
                 nameField.setVisible(true);
                 startGameButton.setEnabled(true);
+                rankedGameButton.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 30));
+                notRankedGameButton.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,30));
+                this.setBackground(Color.LIGHT_GRAY);
+                nameLabel.setVisible(true);
                 repaintTextField();
             }
             else if(!rankedGameButton.isSelected()){
                 nameField.setVisible(false);
+                nameLabel.setVisible(false);
+                rankedGameButton.setBorder(BorderFactory.createLineBorder(color, 30));
+                notRankedGameButton.setBorder(BorderFactory.createLineBorder(color,30));
+                this.setBackground(color);
                 startGameButton.setEnabled(false);
                 repaintTextField();
             }
@@ -94,11 +113,18 @@ public class StartPanel extends JPanel {
             if(notRankedGameButton.isSelected()){
                 rankedGameButton.setSelected(false);
                 nameField.setVisible(false);
+                nameLabel.setVisible(false);
+                notRankedGameButton.setBorder(BorderFactory.createLineBorder(Color.PINK,30));
+                rankedGameButton.setBorder(BorderFactory.createLineBorder(Color.PINK, 30));
+                this.setBackground(Color.PINK);
                 startGameButton.setEnabled(true);
                 repaintTextField();
             }
             else if(!notRankedGameButton.isSelected()){
                 startGameButton.setEnabled(false);
+                rankedGameButton.setBorder(BorderFactory.createLineBorder(color, 30));
+                notRankedGameButton.setBorder(BorderFactory.createLineBorder(color,30));
+                this.setBackground(color);
             }
         });
     }
