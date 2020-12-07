@@ -24,8 +24,10 @@ public class Database {
     }
 
     public void addScore(Score score) {
-        // TODO - Sort before
-        this.listOfScores.add(score);
+        for (int i = 0; i < this.listOfScores.size(); i++) {
+            if (score.getScore() >= this.listOfScores.get(i).getScore())
+                this.listOfScores.add(i, score);
+        }
     }
 
     public void loadData() {
