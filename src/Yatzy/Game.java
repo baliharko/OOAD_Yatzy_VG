@@ -1,10 +1,12 @@
 package Yatzy;
 
+import javax.swing.*;
 import java.awt.*;
 
 public abstract class Game {
 
     protected Color gameColor;
+    private Controller controller;
 
     private String player;
     private int currentScore;
@@ -12,14 +14,26 @@ public abstract class Game {
     private int currentThrow;
     Database database;
 
-    public void rollDice(){
-
+    public Game() {
+        createDice();
     }
 
-    public void createDices(){
+    public Die[] rollDice() {
+        JToggleButton[] toggleButtons = controller.getDiceButtons();
+        for (int i = 0; i < dice.length; i++) {
+            if (!toggleButtons[i].isSelected()) {
+                dice[i].roll();
+//                toggleButtons[i].setText("" + dice[i].getValue());
+                System.out.println(dice[i].getValue());
+            }
+        }
+        return dice;
+    }
+
+    public void createDice() {
         for (int i = 0; i < dice.length; i++) {
             dice[i] = new Die();
-            System.out.println("Tärning " + (i+1) + ": " + dice[i].getValue());
+            System.out.println("Tärning " + (i + 1) + ": " + dice[i].getValue());
         }
     }
 

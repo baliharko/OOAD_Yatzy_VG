@@ -1,6 +1,6 @@
 package Yatzy;
 
-import java.awt.*;
+import javax.swing.*;
 
 public class Controller {
 
@@ -10,6 +10,12 @@ public class Controller {
     public Controller() {
         this.window = new YatzyWindow();
         setUpStartButtonListener();
+
+        window.getYatzyPanel().roll.addActionListener(l -> {
+
+
+            window.getYatzyPanel().dices = game.rollDice();
+        });
     }
 
     public void setUpStartButtonListener(){
@@ -38,5 +44,9 @@ public class Controller {
     public void startRankedGame() {
         this.game = new RankedGame();
         this.window.getYatzyPanel().setColor(game.getGameColor());
+    }
+
+    public JToggleButton[] getDiceButtons(){
+        return window.getYatzyPanel().dices;
     }
 }
