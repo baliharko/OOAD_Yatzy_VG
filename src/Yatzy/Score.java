@@ -42,5 +42,6 @@ public class Score {
         points.calculateScore(100);
 
         System.out.println(points.finalScore());
+
     }
 }
