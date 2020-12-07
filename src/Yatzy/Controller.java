@@ -13,8 +13,14 @@ public class Controller {
 
         window.getYatzyPanel().roll.addActionListener(l -> {
 
-
-            window.getYatzyPanel().dices = game.rollDice();
+            Die[] dice = game.rollDice();
+            JToggleButton[] toggleButtons = getDiceButtons();
+            for (int i = 0; i < dice.length; i++){
+                if(!toggleButtons[i].isSelected()){
+                    toggleButtons[i].setText("" + dice[i].getValue());
+                }
+            }
+            //window.getYatzyPanel().dices = game.rollDice();
         });
     }
 
@@ -37,16 +43,16 @@ public class Controller {
     }
 
     public void startUnrankedGame() {
-        this.game = new UnrankedGame();
+        this.game = new UnrankedGame(this);
         this.window.getYatzyPanel().setColor(game.getGameColor());
     }
 
     public void startRankedGame() {
-        this.game = new RankedGame();
+        this.game = new RankedGame(this);
         this.window.getYatzyPanel().setColor(game.getGameColor());
     }
 
     public JToggleButton[] getDiceButtons(){
-        return window.getYatzyPanel().dices;
+        return window.getYatzyPanel().diceButtons;
     }
 }

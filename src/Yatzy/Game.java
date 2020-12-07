@@ -14,7 +14,8 @@ public abstract class Game {
     private int currentThrow;
     Database database;
 
-    public Game() {
+    public Game(Controller controller) {
+        this.controller = controller;
         createDice();
     }
 
@@ -24,7 +25,7 @@ public abstract class Game {
             if (!toggleButtons[i].isSelected()) {
                 dice[i].roll();
 //                toggleButtons[i].setText("" + dice[i].getValue());
-                System.out.println(dice[i].getValue());
+                System.out.println("Dice " + i + " : " + dice[i].getValue());
             }
         }
         return dice;

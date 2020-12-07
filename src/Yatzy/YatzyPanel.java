@@ -28,7 +28,7 @@ public class YatzyPanel extends JPanel {
     List<JLabel> scoreLabels = new ArrayList<>();
     List<JLabel> roundLabels = new ArrayList<>();
 
-    JToggleButton[] d  = new JToggleButton[5];
+    JToggleButton[] diceButtons = new JToggleButton[5];
 
     int rolls = 3; // Ska flyttas till controller
 
@@ -89,12 +89,12 @@ public class YatzyPanel extends JPanel {
 
         for(int i = 0; i < 9; i++){
             if(i%2 == 0){
-                dices[count] = new JToggleButton("1");
-                dices[count].setOpaque(true);
-                dices[count].setBackground(Color.GREEN);
-                dices[count].setFont(new Font("MonoSpaced", Font.BOLD, 100));
-                dices[count].setBorder(BorderFactory.createLineBorder(Color.WHITE,15));
-                dicePanel.add(dices[count]);
+                diceButtons[count] = new JToggleButton("1");
+                diceButtons[count].setOpaque(true);
+                diceButtons[count].setBackground(Color.GREEN);
+                diceButtons[count].setFont(new Font("MonoSpaced", Font.BOLD, 100));
+                diceButtons[count].setBorder(BorderFactory.createLineBorder(Color.WHITE,15));
+                dicePanel.add(diceButtons[count]);
                 count++;
             }
             else{
@@ -121,7 +121,7 @@ public class YatzyPanel extends JPanel {
 //    }
 
     public void setColor(Color color) {
-        for (JToggleButton die : dices) {
+        for (JToggleButton die : diceButtons) {
             die.setBackground(color);
         }
     }

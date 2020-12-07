@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class RankedGame extends Game {
 
-    public RankedGame() {
-        super();
+    public RankedGame(Controller controller) {
+        super(controller);
         super.gameColor = Color.LIGHT_GRAY;
     }
 }

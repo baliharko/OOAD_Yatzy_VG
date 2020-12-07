@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class UnrankedGame extends Game {
 
-    public UnrankedGame() {
-        super();
+    public UnrankedGame(Controller controller) {
+        super(controller);
         super.gameColor = Color.PINK;
     }
 }
