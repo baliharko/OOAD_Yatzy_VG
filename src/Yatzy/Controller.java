@@ -12,7 +12,6 @@ public class Controller {
         setUpStartButtonListener();
 
         window.getYatzyPanel().roll.addActionListener(l -> {
-
             Die[] dice = game.rollDice();
             JToggleButton[] toggleButtons = getDiceButtons();
             for (int i = 0; i < dice.length; i++){
@@ -20,7 +19,6 @@ public class Controller {
                     toggleButtons[i].setText("" + dice[i].getValue());
                 }
             }
-            //window.getYatzyPanel().dices = game.rollDice();
         });
     }
 

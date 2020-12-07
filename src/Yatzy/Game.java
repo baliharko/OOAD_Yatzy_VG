@@ -7,6 +7,7 @@ public abstract class Game {
 
     protected Color gameColor;
     private Controller controller;
+    private static final int THROWS_AMOUNT = 3;
 
     private String player;
     private int currentScore;
@@ -20,11 +21,11 @@ public abstract class Game {
     }
 
     public Die[] rollDice() {
+        addThrow();
         JToggleButton[] toggleButtons = controller.getDiceButtons();
         for (int i = 0; i < dice.length; i++) {
             if (!toggleButtons[i].isSelected()) {
                 dice[i].roll();
-//                toggleButtons[i].setText("" + dice[i].getValue());
                 System.out.println("Dice " + i + " : " + dice[i].getValue());
             }
         }
@@ -40,5 +41,9 @@ public abstract class Game {
 
     public Color getGameColor() {
         return this.gameColor;
+    }
+
+    public void addThrow() {
+        this.currentThrow = (this.currentThrow + 1) % THROWS_AMOUNT;
     }
 }
