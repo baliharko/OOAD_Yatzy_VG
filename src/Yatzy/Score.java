@@ -8,29 +8,26 @@ public class Score {
     private int score;
     private LocalDate date;
 
-    public Score(int score) {
-        this.score = score;
+
+    public void calculateScore(int tempScore) {
+        if (tempScore >= 42)
+            tempScore += 30;
+
+        this.score += tempScore;
+    }
+
+    public String finalScore() {
         this.date = LocalDate.now();
-
-        calculateScore();
-    }
-
-    public void calculateScore() {
-        if (this.score >= 42)
-            this.score += 30;
-    }
-
-    @Override
-    public String toString() {
-        return "Score{" +
-                "score=" + score +
-                ", date=" + date +
-                '}';
+        return "Poäng: " + score +
+                "\nDatum: " + date;
     }
 
     public static void main(String[] args) {
-        Score points = new Score(100);
+        Score points = new Score();
 
-        System.out.println(points.toString());
+        points.calculateScore(100);
+        points.calculateScore(100);
+
+        System.out.println(points.finalScore());
     }
 }
