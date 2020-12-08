@@ -35,7 +35,7 @@ public abstract class Game {
             }
         }
         if (currentThrow == 0) {
-            if (!isFirstRound)
+            if (isFirstRound)
                 currentRound++;
         }
         System.out.println("currentThrow = " + currentThrow);
@@ -57,6 +57,7 @@ public abstract class Game {
     public void addThrow() {
         if (isFirstRound) {
             this.currentThrow = 0;
+            this.currentRound = 0;
             this.isFirstRound = false;
         } else
             this.currentThrow = (this.currentThrow + 1) % THROWS_AMOUNT;
