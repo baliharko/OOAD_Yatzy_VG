@@ -11,7 +11,7 @@ public abstract class Game {
     Database database = Database.getInstance();
     protected Color gameColor;
     private Controller controller;
-    private String playerName = "Orvar";
+    private String playerName;
     private int currentScore;
     Die[] dice = new Die[5];
     private int currentThrow;
@@ -19,6 +19,7 @@ public abstract class Game {
     private boolean isFirstRound;
 
     public Game(Controller controller) {
+//        playerName = "nil";
         currentScore = 0;
         this.controller = controller;
         this.isFirstRound = true;

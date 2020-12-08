@@ -58,9 +58,10 @@ public class Controller {
                 window.changePanelTo(window.getYatzyPanel());
             } else if (window.getStartPanel().getRankedGameButton().isSelected()) {
                 if (window.getStartPanel().getNameField().getText().length() > 2) {
-                    this.window.setTitle("Name: " + window.getStartPanel().getNameField().getText());
-//                    game.setPlayerName(window.getStartPanel().getNameField().getText());
+                    String name = window.getStartPanel().getNameField().getText();
+                    this.window.setTitle("Name: " + name);
                     startRankedGame();
+                    game.setPlayerName(name);
                     window.changePanelTo(window.getYatzyPanel());
                 } else System.out.println("Du måste ange ett namn/alias med minst 3 tecken.");
             }
