@@ -65,6 +65,8 @@ public class YatzyPanel extends JPanel {
         for(int i = 0; i < 8; i++){
             roundLabels.add(new JLabel(String.valueOf(i+1)));
             roundLabels.get(i).setBorder(new EtchedBorder());
+            roundLabels.get(i).setOpaque(true);
+            roundLabels.get(i).setBackground(Color.white);
             roundLabels.get(i).setHorizontalAlignment(SwingConstants.CENTER);
             roundLabels.get(i).setFont(new Font("MonoSpaced", Font.BOLD, 18));
             scoreBoardRounds.add(roundLabels.get(i));
