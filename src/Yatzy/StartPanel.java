@@ -11,7 +11,7 @@ public class StartPanel extends JPanel {
      */
 
     // Backgroundcolor
-    Color color = Color.GREEN; // Test Färg
+    Color color = new Color(184,207,229);
 
     // Panels
     JPanel topPanel = new JPanel(new GridLayout(1,2,10,10));
