@@ -20,6 +20,10 @@ public class Controller {
                 }
             }
         });
+
+        window.getYatzyPanel().show.addActionListener(l -> {
+            new HighScoreWindow();
+        });
     }
 
     public void setUpStartButtonListener(){
