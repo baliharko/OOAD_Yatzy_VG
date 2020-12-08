@@ -13,12 +13,18 @@ public class Controller {
         setUpStartButtonListener();
 
         window.getYatzyPanel().roll.addActionListener(l -> {
-            setRoundColors();
             Die[] dice = game.rollDice();
             JToggleButton[] toggleButtons = getDiceButtons();
             for (int i = 0; i < dice.length; i++) {
                 if (!toggleButtons[i].isSelected()) {
                     toggleButtons[i].setText("" + dice[i].getValue());
+                }
+            }
+            setRoundColors();
+            if(game.getCurrentThrow() == 0){
+                for (JToggleButton diceButton: window.getYatzyPanel().diceButtons) {
+                    diceButton.setSelected(false);
+                    diceButton.setBackground(game.getGameColor());
                 }
             }
         });
@@ -35,13 +41,6 @@ public class Controller {
                     diceButton.setBackground(game.gameColor);
             });
         }
-
-//        if(window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).getText().equals(""+game.getCurrentRound())){
-//            window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).setBackground(game.getGameColor());
-//        }
-//        else{
-//            window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).setBackground(Color.white);
-//        }
     }
 
     public void setUpStartButtonListener() {
