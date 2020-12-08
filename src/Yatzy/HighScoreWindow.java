@@ -43,7 +43,7 @@ public class HighScoreWindow extends JFrame {
         this.setLocation(1000,150);
         this.setSize(300,500);
         this.setResizable(false);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setVisible(true);
     }
 

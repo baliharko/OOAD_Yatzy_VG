@@ -75,11 +75,17 @@ public class Controller {
     }
 
     public void setRoundColors(){
-        if(Integer.parseInt(window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).getText())-1 == game.getCurrentRound()){
-            window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).setBackground(game.getGameColor());
+        if(game.getCurrentRound() < Game.ROUNDS_AMOUNT){
+            if(Integer.parseInt(window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).getText())-1 == game.getCurrentRound()){
+                window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).setBackground(game.getGameColor());
+            }
+            else{
+                window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).setBackground(Color.white);
+            }
         }
         else{
-            window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).setBackground(Color.white);
+            System.out.println("Beräkna saker");
         }
+
     }
 }
