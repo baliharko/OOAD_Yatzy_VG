@@ -5,7 +5,7 @@ import java.awt.*;
 
 public abstract class Game {
 
-    private static final int THROWS_AMOUNT = 3;
+    public static final int THROWS_AMOUNT = 3;
     public static final int ROUNDS_AMOUNT = 6;
 
     Database database;

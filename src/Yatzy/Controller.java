@@ -22,6 +22,12 @@ public class Controller {
             }
             window.getYatzyPanel().rollButton.setText("Kast (" + (game.getCurrentThrow()+1) + ")");
             setRoundColors();
+            if(game.getCurrentThrow() == 0){
+                for (JToggleButton diceButton: window.getYatzyPanel().diceButtons) {
+                    diceButton.setSelected(false);
+                    diceButton.setBackground(game.getGameColor());
+                }
+            }
         });
 
         window.getYatzyPanel().showScoreButton.addActionListener(l -> {
