@@ -27,14 +27,17 @@ public class Database {
     public void addScore(Score score) {
         if(listOfScores.isEmpty()) {
             listOfScores.add(score);
-            System.out.println(listOfScores.size());
-            return;
         }
-
-        for (int i = 0; i < this.listOfScores.size(); i++) {
-            if (score.getScore() > this.listOfScores.get(i).getScore()) {
-                this.listOfScores.add(i, score);
-                break;
+        else {
+            for (int i = 0; i < this.listOfScores.size(); i++) {
+                if (score.getScore() > this.listOfScores.get(i).getScore()) {
+                    this.listOfScores.add(i, score);
+                    break;
+                }
+                else if(i == this.listOfScores.size()-1){
+                    this.listOfScores.add(score);
+                    break;
+                }
             }
         }
     }
@@ -75,4 +78,14 @@ public class Database {
     public List<Score> getListOfScores() {
         return listOfScores;
     }
+
+//    public static void main(String[] args) {
+//
+//        Database.getInstance().addScore(new Score("Orvar",83));
+//        Database.getInstance().saveData();
+//
+//        for (var score : Database.getInstance().listOfScores){
+//            System.out.println(score.toString());
+//        }
+//    }
 }

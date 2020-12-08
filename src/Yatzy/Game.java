@@ -19,7 +19,6 @@ public abstract class Game {
     private boolean isFirstRound;
 
     public Game(Controller controller) {
-//        playerName = "nil";
         currentScore = 0;
         this.controller = controller;
         this.isFirstRound = true;
@@ -65,13 +64,11 @@ public abstract class Game {
             }
         }
         currentScore += sum;
-        System.out.println("Omgångsresultat: " + currentScore);
         return sum;
     }
 
     public boolean isBonusQualified(){
         if(currentScore >= 42) {
-            System.out.println("Bonus achieved!!!!");
             currentScore += 35;
             return true;
         }
