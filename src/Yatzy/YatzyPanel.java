@@ -30,14 +30,11 @@ public class YatzyPanel extends JPanel {
 
     JToggleButton[] diceButtons = new JToggleButton[5];
 
-    int rolls = 3; // Ska flyttas till controller
-
     public YatzyPanel(){
         setUpThisJPanel();
         setUpPanels();
         setUpScoreBoard();
         setUpDices();
-//        setUpListeners(); // added here for test purposes
 
         this.revalidate();
         this.repaint();
@@ -102,23 +99,6 @@ public class YatzyPanel extends JPanel {
             }
         }
     }
-
-//    public void setUpListeners(){
-//        ActionListener rolling = new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Random rand = new Random();
-//                for (int i = 0; i < dices.length; i++) {
-//                    int x = rand.nextInt(6) + 1;
-//                    dices[i].setText(String.valueOf(x));
-//                }
-//                rolls--;
-//                roll.setText("Kast (" + rolls + ")");
-//                if(rolls == 1) rolls = 4;
-//            }
-//        };
-//        roll.addActionListener(rolling);
-//    }
 
     public void setColor(Color color) {
         for (JToggleButton die : diceButtons) {

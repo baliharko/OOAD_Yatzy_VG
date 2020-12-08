@@ -11,6 +11,7 @@ public class Database {
     private static final Database SINGLE_INSTANCE = new Database();
     private static final String FILEPATH = "scores.ser";
     private List<Score> listOfScores;
+    private Score score;
 
     private Database() {
         this.listOfScores = new ArrayList<>();
@@ -23,12 +24,12 @@ public class Database {
         return SINGLE_INSTANCE;
     }
 
-    public void addScore(Score score) {
-        for (int i = 0; i < this.listOfScores.size(); i++) {
-            if (score.getScore() >= this.listOfScores.get(i).getScore())
-                this.listOfScores.add(i, score);
-        }
-    }
+//    public void addScore(Score score) {
+//        for (int i = 0; i < this.listOfScores.size(); i++) {
+//            if (score.getScore() >= this.listOfScores.get(i).getScore())
+//                this.listOfScores.add(i, score);
+//        }
+//    }
 
     public void loadData() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(FILEPATH))) {

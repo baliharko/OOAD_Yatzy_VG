@@ -9,14 +9,6 @@ public class YatzyWindow extends JFrame {
     private YatzyPanel yatzyPanel = new YatzyPanel();
 
     public YatzyWindow(){
-
-        try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            SwingUtilities.updateComponentTreeUI(this);
-        } catch (Exception e) {
-            System.out.println("Error setting the LAF..." + e);
-        }
-
         setUpJFrame();
         changePanelTo(startPanel);
     }

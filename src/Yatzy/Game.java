@@ -5,14 +5,17 @@ import java.awt.*;
 
 public abstract class Game {
 
+    private static final int THROWS_AMOUNT = 3;
+    private static final int ROUNDS_AMOUNT = 6;
+
+    Database database;
     protected Color gameColor;
     private Controller controller;
-
-    private String player;
+    private String playerName;
     private int currentScore;
     Die[] dice = new Die[5];
     private int currentThrow;
-    Database database;
+    private int currentRound;
 
     public Game(Controller controller) {
         this.controller = controller;
@@ -20,11 +23,11 @@ public abstract class Game {
     }
 
     public Die[] rollDice() {
+        addThrow();
         JToggleButton[] toggleButtons = controller.getDiceButtons();
         for (int i = 0; i < dice.length; i++) {
             if (!toggleButtons[i].isSelected()) {
                 dice[i].roll();
-//                toggleButtons[i].setText("" + dice[i].getValue());
                 System.out.println("Dice " + i + " : " + dice[i].getValue());
             }
         }
@@ -40,5 +43,9 @@ public abstract class Game {
 
     public Color getGameColor() {
         return this.gameColor;
+    }
+
+    public void addThrow() {
+        this.currentThrow = (this.currentThrow + 1) % THROWS_AMOUNT;
     }
 }
