@@ -16,9 +16,12 @@ public abstract class Game {
     Die[] dice = new Die[5];
     private int currentThrow;
     private int currentRound;
+    private boolean isFirstRound = true;
 
     public Game(Controller controller) {
         this.controller = controller;
+        this.currentRound = 0;
+        this.currentThrow = 0;
         createDice();
     }
 
@@ -31,6 +34,12 @@ public abstract class Game {
                 System.out.println("Dice " + i + " : " + dice[i].getValue());
             }
         }
+        if (currentThrow == 0) {
+            if (!isFirstRound)
+                currentRound++;
+        }
+        System.out.println("currentThrow = " + currentThrow);
+        System.out.println("currentRound = " + currentRound);
         return dice;
     }
 
@@ -46,6 +55,18 @@ public abstract class Game {
     }
 
     public void addThrow() {
-        this.currentThrow = (this.currentThrow + 1) % THROWS_AMOUNT;
+        if (isFirstRound) {
+            this.currentThrow = 0;
+            this.isFirstRound = false;
+        } else
+            this.currentThrow = (this.currentThrow + 1) % THROWS_AMOUNT;
+    }
+
+    public int getCurrentThrow() {
+        return currentThrow;
+    }
+
+    public int getCurrentRound() {
+        return currentRound;
     }
 }
