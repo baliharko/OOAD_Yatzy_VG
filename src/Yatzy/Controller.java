@@ -12,7 +12,16 @@ public class Controller {
         this.window = new YatzyWindow();
         setUpStartButtonListener();
 
+        setUpRollButtonListener();
+
+        setUpHighscoreButtonListener();
+
+        setUpSelectedDieColor();
+    }
+
+    public void setUpRollButtonListener(){
         window.getYatzyPanel().rollButton.addActionListener(l -> {
+            changeButtonStates(true);
             Die[] dice = game.rollDice();
             JToggleButton[] toggleButtons = getDiceButtons();
             for (int i = 0; i < dice.length; i++) {
@@ -20,13 +29,15 @@ public class Controller {
                     toggleButtons[i].setText("" + dice[i].getValue());
                 }
             }
-            window.getYatzyPanel().rollButton.setText("Kast (" + (game.getCurrentThrow()+1) + ")");
+            window.getYatzyPanel().rollButton.setText("Kasta");
 
             if(game.getCurrentThrow() == 2){
                 for (JToggleButton diceButton: window.getYatzyPanel().diceButtons) {
                     diceButton.setSelected(false);
                     diceButton.setBackground(game.getGameColor());
                 }
+                changeButtonStates(false);
+
                 int roundScore = game.calculateRoundScore();
                 window.getYatzyPanel().scoreLabels.get(game.getCurrentRound()).setText(String.valueOf(roundScore));
             }
@@ -37,19 +48,6 @@ public class Controller {
                 setFinalScore();
             }
         });
-
-        window.getYatzyPanel().showScoreButton.addActionListener(l -> {
-            new HighScoreWindow();
-        });
-
-        for (JToggleButton diceButton : window.getYatzyPanel().diceButtons) {
-            diceButton.addActionListener(l -> {
-                if (diceButton.isSelected())
-                    diceButton.setBackground(new Color(184,207,229));
-                else
-                    diceButton.setBackground(game.gameColor);
-            });
-        }
     }
 
     public void setUpStartButtonListener() {
@@ -66,6 +64,23 @@ public class Controller {
                 } else System.out.println("Du måste ange ett namn/alias med minst 3 tecken.");
             }
         });
+    }
+
+    public void setUpHighscoreButtonListener(){
+        window.getYatzyPanel().showScoreButton.addActionListener(l -> {
+            new HighScoreWindow();
+        });
+    }
+
+    public void setUpSelectedDieColor(){
+        for (JToggleButton diceButton : window.getYatzyPanel().diceButtons) {
+            diceButton.addActionListener(l -> {
+                if (diceButton.isSelected())
+                    diceButton.setBackground(new Color(184,207,229));
+                else
+                    diceButton.setBackground(game.gameColor);
+            });
+        }
     }
 
     public void startUnrankedGame() {
@@ -91,6 +106,17 @@ public class Controller {
                 window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).setBackground(Color.white);
             }
         }
+    }
+
+    public void changeButtonStates(Boolean state){
+        for(var button : window.getYatzyPanel().diceButtons){
+            button.setEnabled(state);
+        }
+        if (!state) setUpNewRound();
+    }
+
+    public void setUpNewRound(){
+        window.getYatzyPanel().rollButton.setText("Nästa omgång");
     }
 
     public void setFinalScore(){

@@ -15,7 +15,7 @@ public class YatzyPanel extends JPanel {
     JPanel dicePanel = new JPanel(new GridLayout(3,3));
 
     // Buttons
-    JButton rollButton = new JButton("Kast (0)");
+    JButton rollButton = new JButton("Starta omgång");
     JButton showScoreButton = new JButton("Visa highscore");
 
     // ScoreBoard
