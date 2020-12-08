@@ -25,7 +25,6 @@ public abstract class Game {
     }
 
     public Die[] rollDice() {
-        addThrow();
         JToggleButton[] toggleButtons = controller.getDiceButtons();
         for (int i = 0; i < dice.length; i++) {
             if (!toggleButtons[i].isSelected()) {
@@ -33,10 +32,17 @@ public abstract class Game {
                 System.out.println("Dice " + i + " : " + dice[i].getValue());
             }
         }
-        if (currentThrow == 0) {
-            if (isFirstRound)
+
+        if (isFirstRound) {
+            this.currentRound = 0;
+            this.currentThrow = 0;
+            this.isFirstRound = false;
+        } else {
+            addThrow();
+            if (currentThrow == 0)
                 currentRound++;
         }
+
         System.out.println("currentThrow = " + currentThrow);
         System.out.println("currentRound = " + currentRound);
         return dice;
@@ -54,12 +60,7 @@ public abstract class Game {
     }
 
     public void addThrow() {
-        if (isFirstRound) {
-            this.currentThrow = 0;
-            this.currentRound = 0;
-            this.isFirstRound = false;
-        } else
-            this.currentThrow = (this.currentThrow + 1) % THROWS_AMOUNT;
+        this.currentThrow = (this.currentThrow + 1) % THROWS_AMOUNT;
     }
 
     public int getCurrentThrow() {
