@@ -16,12 +16,11 @@ public abstract class Game {
     Die[] dice = new Die[5];
     private int currentThrow;
     private int currentRound;
-    private boolean isFirstRound = true;
+    private boolean isFirstRound;
 
     public Game(Controller controller) {
         this.controller = controller;
-        this.currentRound = 0;
-        this.currentThrow = 0;
+        this.isFirstRound = true;
         createDice();
     }
 
