@@ -1,5 +1,6 @@
 package Yatzy;
 
+import javax.xml.crypto.Data;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,7 +12,6 @@ public class Database {
     private static final Database SINGLE_INSTANCE = new Database();
     private static final String FILEPATH = "scores.ser";
     private List<Score> listOfScores;
-    private Score score;
 
     private Database() {
         this.listOfScores = new ArrayList<>();
@@ -24,12 +24,20 @@ public class Database {
         return SINGLE_INSTANCE;
     }
 
-//    public void addScore(Score score) {
-//        for (int i = 0; i < this.listOfScores.size(); i++) {
-//            if (score.getScore() >= this.listOfScores.get(i).getScore())
-//                this.listOfScores.add(i, score);
-//        }
-//    }
+    public void addScore(Score score) {
+        if(listOfScores.isEmpty()) {
+            listOfScores.add(score);
+            System.out.println(listOfScores.size());
+            return;
+        }
+
+        for (int i = 0; i < this.listOfScores.size(); i++) {
+            if (score.getScore() > this.listOfScores.get(i).getScore()) {
+                this.listOfScores.add(i, score);
+                break;
+            }
+        }
+    }
 
     public void loadData() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(FILEPATH))) {
@@ -62,5 +70,9 @@ public class Database {
                 e.printStackTrace();
             }
         }
+    }
+
+    public List<Score> getListOfScores() {
+        return listOfScores;
     }
 }

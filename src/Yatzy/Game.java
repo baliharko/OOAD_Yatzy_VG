@@ -8,10 +8,10 @@ public abstract class Game {
     public static final int THROWS_AMOUNT = 3;
     public static final int ROUNDS_AMOUNT = 6;
 
-    Database database;
+    Database database = Database.getInstance();
     protected Color gameColor;
     private Controller controller;
-    private String playerName;
+    private String playerName = "Orvar";
     private int currentScore;
     Die[] dice = new Die[5];
     private int currentThrow;
@@ -95,5 +95,13 @@ public abstract class Game {
 
     public int getCurrentScore() {
         return currentScore;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public String getPlayerName() {
+        return playerName;
     }
 }

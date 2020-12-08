@@ -59,6 +59,7 @@ public class Controller {
             } else if (window.getStartPanel().getRankedGameButton().isSelected()) {
                 if (window.getStartPanel().getNameField().getText().length() > 2) {
                     this.window.setTitle("Name: " + window.getStartPanel().getNameField().getText());
+//                    game.setPlayerName(window.getStartPanel().getNameField().getText());
                     startRankedGame();
                     window.changePanelTo(window.getYatzyPanel());
                 } else System.out.println("Du måste ange ett namn/alias med minst 3 tecken.");
@@ -68,7 +69,7 @@ public class Controller {
 
     public void setUpHighscoreButtonListener(){
         window.getYatzyPanel().showScoreButton.addActionListener(l -> {
-            new HighScoreWindow();
+            new HighScoreWindow(game.database.getListOfScores());
         });
     }
 
@@ -125,5 +126,10 @@ public class Controller {
         }
         else window.getYatzyPanel().scoreLabels.get(6).setText("0");
         window.getYatzyPanel().scoreLabels.get(7).setText(String.valueOf(game.getCurrentScore()));
+
+        if(game instanceof RankedGame){
+            game.database.addScore(new Score(game.getPlayerName(), game.getCurrentScore()));
+            game.database.saveData();
+        }
     }
 }

@@ -2,6 +2,7 @@ package Yatzy;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class HighScoreWindow extends JFrame {
 
@@ -9,11 +10,13 @@ public class HighScoreWindow extends JFrame {
     private JLabel header = new JLabel("Scoreboard");
     private JTextArea scoreArea = new JTextArea();
     private JScrollPane sp = new JScrollPane(scoreArea);
+    private List<Score> list;
 
-    public HighScoreWindow(){
+    public HighScoreWindow(List<Score> list){
+        this.list = list;
         setUpScoreBoardLabel();
         setUpScoreBoard();
-        testMethodForAddingNamesToScoreboard("Orvar Karlsson",120);
+        printToScoreboard();
         setUpJFrame();
     }
 
@@ -32,10 +35,9 @@ public class HighScoreWindow extends JFrame {
         add(sp,BorderLayout.CENTER);
     }
 
-    public void testMethodForAddingNamesToScoreboard(String name, int loops){
-        for(int i = 1; i < loops; i++){
-            String temp = String.format("%3d. %s",i,name);
-            scoreArea.append(temp + "\n");
+    public void printToScoreboard(){
+        for(int i = 1; i < list.size(); i++){
+            scoreArea.append(i + " " + list.get(i-1).toString() + "\n");
         }
     }
 
@@ -46,9 +48,4 @@ public class HighScoreWindow extends JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setVisible(true);
     }
-
-    public static void main(String[] args) {
-        new HighScoreWindow();
-    }
-
 }

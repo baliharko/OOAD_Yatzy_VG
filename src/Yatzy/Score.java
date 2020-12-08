@@ -1,47 +1,34 @@
 package Yatzy;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Score {
+public class Score implements Serializable {
 
     private String playerName;
     private int score;
     private LocalDate date;
 
-
-    public Score() {
-
-    }
-
-    public Score(String playerName) {
+    public Score(String playerName, int score) {
         this.playerName = playerName;
-    }
-
-    public void calculateScore(int tempScore) {
-        if (tempScore >= 42)
-            tempScore += 30;
-
-        this.score += tempScore;
-    }
-
-    public String finalScore() {
+        this.score = score;
         this.date = LocalDate.now();
-        return playerName +
-                "\nPoäng: " + this.score +
-                "\nDatum: " + this.date;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public String getPlayerName() {
+        return playerName;
     }
 
-    public static void main(String[] args) {
-        Score points = new Score("asdf");
+    public LocalDate getDate() {
+        return date;
+    }
 
-        points.calculateScore(100);
-        points.calculateScore(100);
+    public int getScore() {
+        return score;
+    }
 
-        System.out.println(points.finalScore());
-
+    @Override
+    public String toString() {
+        return String.format("%-10s %4d %12s",playerName,score,date.toString());
     }
 }
