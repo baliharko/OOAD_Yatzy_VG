@@ -5,15 +5,17 @@ import java.awt.*;
 
 public abstract class Game {
 
+    private static final int THROWS_AMOUNT = 3;
+    private static final int ROUNDS_AMOUNT = 6;
+
+    Database database;
     protected Color gameColor;
     private Controller controller;
-    private static final int THROWS_AMOUNT = 3;
-
-    private String player;
+    private String playerName;
     private int currentScore;
     Die[] dice = new Die[5];
     private int currentThrow;
-    Database database;
+    private int currentRound;
 
     public Game(Controller controller) {
         this.controller = controller;
