@@ -20,7 +20,7 @@ public class Controller {
                 }
             }
         });
-    }>
+    }
 
     public void setUpStartButtonListener(){
         window.getStartPanel().getStartGameButton().addActionListener(l -> {
