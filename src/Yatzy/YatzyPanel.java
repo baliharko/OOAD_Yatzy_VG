@@ -30,8 +30,6 @@ public class YatzyPanel extends JPanel {
 
     JToggleButton[] diceButtons = new JToggleButton[5];
 
-    int rolls = 3; // Ska flyttas till controller
-
     public YatzyPanel(){
         setUpThisJPanel();
         setUpPanels();
