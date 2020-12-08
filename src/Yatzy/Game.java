@@ -55,7 +55,6 @@ public abstract class Game {
         }
     }
 
-    // omgång * antal tärningar med value "omgång" = summan
     public int calculateRoundScore(){
         int sum = 0;
 
@@ -64,7 +63,18 @@ public abstract class Game {
                 sum += die.getValue();
             }
         }
+        currentScore += sum;
+        System.out.println("Omgångsresultat: " + currentScore);
         return sum;
+    }
+
+    public boolean isBonusQualified(){
+        if(currentScore >= 42) {
+            System.out.println("Bonus achieved!!!!");
+            currentScore += 35;
+            return true;
+        }
+        else return false;
     }
 
     public Color getGameColor() {
@@ -85,9 +95,5 @@ public abstract class Game {
 
     public int getCurrentScore() {
         return currentScore;
-    }
-
-    public void setCurrentScore(int currentScore) {
-        this.currentScore = currentScore;
     }
 }

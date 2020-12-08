@@ -21,7 +21,6 @@ public class Controller {
                 }
             }
             window.getYatzyPanel().rollButton.setText("Kast (" + (game.getCurrentThrow()+1) + ")");
-            setRoundColors();
 
             if(game.getCurrentThrow() == 2){
                 for (JToggleButton diceButton: window.getYatzyPanel().diceButtons) {
@@ -31,9 +30,13 @@ public class Controller {
                 int roundScore = game.calculateRoundScore();
                 window.getYatzyPanel().scoreLabels.get(game.getCurrentRound()).setText(String.valueOf(roundScore));
             }
+
+            setRoundColors();
+
+            if (game.getCurrentRound() == Game.ROUNDS_AMOUNT-1 && game.getCurrentThrow() == Game.THROWS_AMOUNT-1){
+                setFinalScore();
+            }
         });
-
-
 
         window.getYatzyPanel().showScoreButton.addActionListener(l -> {
             new HighScoreWindow();
@@ -88,9 +91,13 @@ public class Controller {
                 window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).setBackground(Color.white);
             }
         }
-        else{
-            System.out.println("Beräkna saker");
-        }
+    }
 
+    public void setFinalScore(){
+        if(game.isBonusQualified()){
+            window.getYatzyPanel().scoreLabels.get(6).setText("35");
+        }
+        else window.getYatzyPanel().scoreLabels.get(6).setText("0");
+        window.getYatzyPanel().scoreLabels.get(7).setText(String.valueOf(game.getCurrentScore()));
     }
 }
