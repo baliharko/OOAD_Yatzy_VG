@@ -22,7 +22,8 @@ public class Controller {
             }
             window.getYatzyPanel().rollButton.setText("Kast (" + (game.getCurrentThrow()+1) + ")");
             setRoundColors();
-            if(game.getCurrentThrow() == 0){
+
+            if(game.getCurrentThrow() == 2){
                 for (JToggleButton diceButton: window.getYatzyPanel().diceButtons) {
                     diceButton.setSelected(false);
                     diceButton.setBackground(game.getGameColor());

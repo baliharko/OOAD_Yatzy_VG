@@ -51,7 +51,6 @@ public abstract class Game {
     public void createDice() {
         for (int i = 0; i < dice.length; i++) {
             dice[i] = new Die();
-            System.out.println("Tärning " + (i + 1) + ": " + dice[i].getValue());
         }
     }
 

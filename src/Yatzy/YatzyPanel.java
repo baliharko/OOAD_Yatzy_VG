@@ -85,7 +85,7 @@ public class YatzyPanel extends JPanel {
 
         for(int i = 0; i < 9; i++){
             if(i%2 == 0){
-                diceButtons[count] = new JToggleButton("1");
+                diceButtons[count] = new JToggleButton("0");
                 diceButtons[count].setOpaque(true);
                 diceButtons[count].setBackground(Color.GREEN);
                 diceButtons[count].setFont(new Font("MonoSpaced", Font.BOLD, 100));
