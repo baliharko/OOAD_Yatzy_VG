@@ -12,8 +12,7 @@ public class Controller {
         this.window = new YatzyWindow();
         setUpStartButtonListener();
 
-        window.getYatzyPanel().roll.addActionListener(l -> {
-            setRoundColors();
+        window.getYatzyPanel().rollButton.addActionListener(l -> {
             Die[] dice = game.rollDice();
             JToggleButton[] toggleButtons = getDiceButtons();
             for (int i = 0; i < dice.length; i++) {
@@ -21,9 +20,11 @@ public class Controller {
                     toggleButtons[i].setText("" + dice[i].getValue());
                 }
             }
+            window.getYatzyPanel().rollButton.setText("Kast (" + (game.getCurrentThrow()+1) + ")");
+            setRoundColors();
         });
 
-        window.getYatzyPanel().show.addActionListener(l -> {
+        window.getYatzyPanel().showScoreButton.addActionListener(l -> {
             new HighScoreWindow();
         });
 
@@ -35,13 +36,6 @@ public class Controller {
                     diceButton.setBackground(game.gameColor);
             });
         }
-
-//        if(window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).getText().equals(""+game.getCurrentRound())){
-//            window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).setBackground(game.getGameColor());
-//        }
-//        else{
-//            window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).setBackground(Color.white);
-//        }
     }
 
     public void setUpStartButtonListener() {

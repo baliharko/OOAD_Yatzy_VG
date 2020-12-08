@@ -3,11 +3,8 @@ package Yatzy;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class YatzyPanel extends JPanel {
 
@@ -18,8 +15,8 @@ public class YatzyPanel extends JPanel {
     JPanel dicePanel = new JPanel(new GridLayout(3,3));
 
     // Buttons
-    JButton roll = new JButton("Kasta (3)");
-    JButton show = new JButton("Visa highscore");
+    JButton rollButton = new JButton("Kast (0)");
+    JButton showScoreButton = new JButton("Visa highscore");
 
     // ScoreBoard
     JPanel scoreBoard = new JPanel(new GridLayout(1,2));
@@ -53,8 +50,8 @@ public class YatzyPanel extends JPanel {
         scoreBoard.add(scoreBoardScores);
         eastPanel.add(scoreBoard, BorderLayout.CENTER);
         eastPanel.add(tableLabel, BorderLayout.NORTH);
-        buttonPanel.add(roll);
-        buttonPanel.add(show);
+        buttonPanel.add(rollButton);
+        buttonPanel.add(showScoreButton);
         buttonPanel.setPreferredSize(new Dimension(500,40));
         this.add(buttonPanel,BorderLayout.SOUTH);
         dicePanel.setBackground(Color.WHITE);
