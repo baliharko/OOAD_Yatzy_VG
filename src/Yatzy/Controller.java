@@ -28,8 +28,12 @@ public class Controller {
                     diceButton.setSelected(false);
                     diceButton.setBackground(game.getGameColor());
                 }
+                int roundScore = game.calculateRoundScore();
+                window.getYatzyPanel().scoreLabels.get(game.getCurrentRound()).setText(String.valueOf(roundScore));
             }
         });
+
+
 
         window.getYatzyPanel().showScoreButton.addActionListener(l -> {
             new HighScoreWindow();

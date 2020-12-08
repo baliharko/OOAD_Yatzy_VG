@@ -19,6 +19,7 @@ public abstract class Game {
     private boolean isFirstRound;
 
     public Game(Controller controller) {
+        currentScore = 0;
         this.controller = controller;
         this.isFirstRound = true;
         createDice();
@@ -54,6 +55,18 @@ public abstract class Game {
         }
     }
 
+    // omgång * antal tärningar med value "omgång" = summan
+    public int calculateRoundScore(){
+        int sum = 0;
+
+        for(var die : dice){
+            if(die.getValue() == currentRound+1){
+                sum += die.getValue();
+            }
+        }
+        return sum;
+    }
+
     public Color getGameColor() {
         return this.gameColor;
     }
@@ -68,5 +81,13 @@ public abstract class Game {
 
     public int getCurrentRound() {
         return currentRound;
+    }
+
+    public int getCurrentScore() {
+        return currentScore;
+    }
+
+    public void setCurrentScore(int currentScore) {
+        this.currentScore = currentScore;
     }
 }
