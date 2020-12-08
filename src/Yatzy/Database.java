@@ -11,7 +11,7 @@ public class Database {
     private static final Database SINGLE_INSTANCE = new Database();
     private static final String FILEPATH = "scores.ser";
     private List<Score> listOfScores;
-    private Score score
+    private Score score;
 
     private Database() {
         this.listOfScores = new ArrayList<>();
