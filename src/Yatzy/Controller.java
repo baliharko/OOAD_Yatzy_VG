@@ -6,21 +6,70 @@ import java.awt.*;
 public class Controller {
 
     private YatzyWindow window;
-    public Game game;
+    private Game game;
 
     public Controller() {
         this.window = new YatzyWindow();
+        setUpStartPanelListener();
+
         setUpStartButtonListener();
 
         setUpRollButtonListener();
 
         setUpHighscoreButtonListener();
 
-        setUpSelectedDieColor();
+        setUpSelectedDieColorListener();
+    }
+
+    public void setUpStartPanelListener(){
+        window.getStartPanel().getRankedGameButton().addActionListener(l -> {
+            if(window.getStartPanel().getRankedGameButton().isSelected()){
+                window.getStartPanel().getUnrankedGameButton().setSelected(false);
+                window.getStartPanel().getNameField().setVisible(true);
+                window.getStartPanel().getStartGameButton().setEnabled(true);
+                window.getStartPanel().getRankedGameButton().setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 30));
+                window.getStartPanel().getUnrankedGameButton().setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,30));
+                window.getStartPanel().setBackground(Color.LIGHT_GRAY);
+                window.getStartPanel().getNameLabel().setVisible(true);
+                window.getStartPanel().repaintTextField();
+            }
+            else if(!window.getStartPanel().getRankedGameButton().isSelected()){
+                window.getStartPanel().getNameField().setVisible(false);
+                window.getStartPanel().getNameLabel().setVisible(false);
+                window.getStartPanel().getRankedGameButton().setBorder(BorderFactory.createLineBorder(
+                        window.getStartPanel().getColor(), 30));
+                window.getStartPanel().getUnrankedGameButton().setBorder(BorderFactory.createLineBorder(
+                        window.getStartPanel().getColor(),30));
+                window.getStartPanel().setBackground(window.getStartPanel().getColor());
+                window.getStartPanel().getStartGameButton().setEnabled(false);
+                window.getStartPanel().repaintTextField();
+            }
+        });
+        window.getStartPanel().getUnrankedGameButton().addActionListener(l -> {
+            if(window.getStartPanel().getUnrankedGameButton().isSelected()){
+                window.getStartPanel().getRankedGameButton().setSelected(false);
+                window.getStartPanel().getNameField().setVisible(false);
+                window.getStartPanel().getNameLabel().setVisible(false);
+                window.getStartPanel().getUnrankedGameButton().setBorder(BorderFactory.createLineBorder(Color.PINK,30));
+                window.getStartPanel().getRankedGameButton().setBorder(BorderFactory.createLineBorder(Color.PINK, 30));
+                window.getStartPanel().setBackground(Color.PINK);
+                window.getStartPanel().getStartGameButton().setEnabled(true);
+                window.getStartPanel().repaintTextField();
+            }
+            else if(!window.getStartPanel().getUnrankedGameButton().isSelected()){
+                window.getStartPanel().getStartGameButton().setEnabled(false);
+                window.getStartPanel().getRankedGameButton().setBorder(BorderFactory.createLineBorder(
+                        window.getStartPanel().getColor(), 30));
+                window.getStartPanel().getUnrankedGameButton().setBorder(BorderFactory.createLineBorder(
+                        window.getStartPanel().getColor(),30));
+                window.getStartPanel().setBackground(
+                        window.getStartPanel().getColor());
+            }
+        });
     }
 
     public void setUpRollButtonListener(){
-        window.getYatzyPanel().rollButton.addActionListener(l -> {
+        window.getYatzyPanel().getRollButton().addActionListener(l -> {
             changeButtonStates(true);
             Die[] dice = game.rollDice();
             JToggleButton[] toggleButtons = getDiceButtons();
@@ -29,17 +78,17 @@ public class Controller {
                     toggleButtons[i].setText("" + dice[i].getValue());
                 }
             }
-            window.getYatzyPanel().rollButton.setText("Kasta");
+            window.getYatzyPanel().getRollButton().setText("Kasta");
 
             if(game.getCurrentThrow() == 2){
-                for (JToggleButton diceButton: window.getYatzyPanel().diceButtons) {
+                for (JToggleButton diceButton: window.getYatzyPanel().getDiceButtons()) {
                     diceButton.setSelected(false);
                     diceButton.setBackground(game.getGameColor());
                 }
                 changeButtonStates(false);
 
                 int roundScore = game.calculateRoundScore();
-                window.getYatzyPanel().scoreLabels.get(game.getCurrentRound()).setText(String.valueOf(roundScore));
+                window.getYatzyPanel().getScoreLabels().get(game.getCurrentRound()).setText(String.valueOf(roundScore));
             }
 
             setRoundColors();
@@ -52,8 +101,8 @@ public class Controller {
 
     public void setUpStartButtonListener() {
         window.getStartPanel().getStartGameButton().addActionListener(l -> {
-            if (window.getStartPanel().getNotRankedGameButton().isSelected()) {
-                window.setTitle("Just playing for fun... loser");
+            if (window.getStartPanel().getUnrankedGameButton().isSelected()) {
+                window.setTitle("YATZY");
                 startUnrankedGame();
                 window.changePanelTo(window.getYatzyPanel());
             } else if (window.getStartPanel().getRankedGameButton().isSelected()) {
@@ -70,13 +119,13 @@ public class Controller {
     }
 
     public void setUpHighscoreButtonListener(){
-        window.getYatzyPanel().showScoreButton.addActionListener(l -> {
+        window.getYatzyPanel().getShowScoreButton().addActionListener(l -> {
             new HighScoreWindow(game.database.getListOfScores());
         });
     }
 
-    public void setUpSelectedDieColor(){
-        for (JToggleButton diceButton : window.getYatzyPanel().diceButtons) {
+    public void setUpSelectedDieColorListener(){
+        for (JToggleButton diceButton : window.getYatzyPanel().getDiceButtons()) {
             diceButton.addActionListener(l -> {
                 if (diceButton.isSelected())
                     diceButton.setBackground(new Color(184,207,229));
@@ -88,46 +137,46 @@ public class Controller {
 
     public void startUnrankedGame() {
         this.game = new UnrankedGame(this);
-        this.window.getYatzyPanel().setColor(game.getGameColor());
+        this.window.getYatzyPanel().setDieColor(game.getGameColor());
     }
 
     public void startRankedGame() {
         this.game = new RankedGame(this);
-        this.window.getYatzyPanel().setColor(game.getGameColor());
+        this.window.getYatzyPanel().setDieColor(game.getGameColor());
     }
 
     public JToggleButton[] getDiceButtons() {
-        return window.getYatzyPanel().diceButtons;
+        return window.getYatzyPanel().getDiceButtons();
     }
 
     public void setRoundColors(){
         if(game.getCurrentRound() < Game.ROUNDS_AMOUNT){
-            if(Integer.parseInt(window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).getText())-1 == game.getCurrentRound()){
-                window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).setBackground(game.getGameColor());
+            if(Integer.parseInt(window.getYatzyPanel().getRoundLabels().get(game.getCurrentRound()).getText())-1 == game.getCurrentRound()){
+                window.getYatzyPanel().getRoundLabels().get(game.getCurrentRound()).setBackground(game.getGameColor());
             }
             else{
-                window.getYatzyPanel().roundLabels.get(game.getCurrentRound()).setBackground(Color.white);
+                window.getYatzyPanel().getRoundLabels().get(game.getCurrentRound()).setBackground(Color.white);
             }
         }
     }
 
     public void changeButtonStates(Boolean state){
-        for(var button : window.getYatzyPanel().diceButtons){
+        for(var button : window.getYatzyPanel().getDiceButtons()){
             button.setEnabled(state);
         }
         if (!state) setUpNewRound();
     }
 
     public void setUpNewRound(){
-        window.getYatzyPanel().rollButton.setText("Nästa omgång");
+        window.getYatzyPanel().getRollButton().setText("Nästa omgång");
     }
 
     public void setFinalScore(){
         if(game.isBonusQualified()){
-            window.getYatzyPanel().scoreLabels.get(6).setText("35");
+            window.getYatzyPanel().getScoreLabels().get(6).setText("35");
         }
-        else window.getYatzyPanel().scoreLabels.get(6).setText("0");
-        window.getYatzyPanel().scoreLabels.get(7).setText(String.valueOf(game.getCurrentScore()));
+        else window.getYatzyPanel().getScoreLabels().get(6).setText("0");
+        window.getYatzyPanel().getScoreLabels().get(7).setText(String.valueOf(game.getCurrentScore()));
 
         if(game instanceof RankedGame){
             game.database.addScore(new Score(game.getPlayerName(), game.getCurrentScore()));

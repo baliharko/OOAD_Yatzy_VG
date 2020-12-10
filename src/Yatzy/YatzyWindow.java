@@ -36,9 +36,4 @@ public class YatzyWindow extends JFrame {
     public YatzyPanel getYatzyPanel() {
         return yatzyPanel;
     }
-
-    public static void main(String[] args) {
-        new YatzyWindow(); // Bara här nu för test syfte
-    }
-
 }

@@ -1,6 +1,5 @@
 package Yatzy;
 
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -78,14 +77,4 @@ public class Database {
     public List<Score> getListOfScores() {
         return listOfScores;
     }
-
-//    public static void main(String[] args) {
-//
-//        Database.getInstance().addScore(new Score("Orvar",83));
-//        Database.getInstance().saveData();
-//
-//        for (var score : Database.getInstance().listOfScores){
-//            System.out.println(score.toString());
-//        }
-//    }
 }

@@ -8,12 +8,12 @@ public abstract class Game {
     public static final int THROWS_AMOUNT = 3;
     public static final int ROUNDS_AMOUNT = 6;
 
-    Database database = Database.getInstance();
+    public Database database = Database.getInstance();
     protected Color gameColor;
     private Controller controller;
     private String playerName;
     private int currentScore;
-    Die[] dice = new Die[5];
+    private Die[] dice = new Die[5];
     private int currentThrow;
     private int currentRound;
     private boolean isFirstRound;

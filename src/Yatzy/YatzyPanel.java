@@ -9,23 +9,23 @@ import java.util.List;
 public class YatzyPanel extends JPanel {
 
     // Panels
-    JPanel eastPanel = new JPanel(new BorderLayout());
-    JLabel tableLabel = new JLabel(" Omgång      Poäng ");
-    JPanel buttonPanel = new JPanel(new GridLayout(1,3));
-    JPanel dicePanel = new JPanel(new GridLayout(3,3));
+    private JPanel eastPanel = new JPanel(new BorderLayout());
+    private JLabel tableLabel = new JLabel(" Omgång      Poäng ");
+    private JPanel buttonPanel = new JPanel(new GridLayout(1,3));
+    private JPanel dicePanel = new JPanel(new GridLayout(3,3));
 
     // Buttons
-    JButton rollButton = new JButton("Starta omgång");
-    JButton showScoreButton = new JButton("Visa highscore");
+    private JButton rollButton = new JButton("Starta omgång");
+    private JButton showScoreButton = new JButton("Visa highscore");
 
     // ScoreBoard
-    JPanel scoreBoard = new JPanel(new GridLayout(1,2));
-    JPanel scoreBoardRounds = new JPanel(new GridLayout(8,1));
-    JPanel scoreBoardScores = new JPanel(new GridLayout(8,1));
-    List<JLabel> scoreLabels = new ArrayList<>();
-    List<JLabel> roundLabels = new ArrayList<>();
+    private JPanel scoreBoard = new JPanel(new GridLayout(1,2));
+    private JPanel scoreBoardRounds = new JPanel(new GridLayout(8,1));
+    private JPanel scoreBoardScores = new JPanel(new GridLayout(8,1));
+    private List<JLabel> scoreLabels = new ArrayList<>();
+    private List<JLabel> roundLabels = new ArrayList<>();
 
-    JToggleButton[] diceButtons = new JToggleButton[5];
+    private JToggleButton[] diceButtons = new JToggleButton[5];
 
     public YatzyPanel(){
         setUpThisJPanel();
@@ -99,10 +99,30 @@ public class YatzyPanel extends JPanel {
         }
     }
 
-    public void setColor(Color color) {
+    public void setDieColor(Color color) {
         for (JToggleButton die : diceButtons) {
             die.setBackground(color);
         }
+    }
+
+    public JButton getRollButton() {
+        return rollButton;
+    }
+
+    public JButton getShowScoreButton() {
+        return showScoreButton;
+    }
+
+    public List<JLabel> getScoreLabels() {
+        return scoreLabels;
+    }
+
+    public List<JLabel> getRoundLabels() {
+        return roundLabels;
+    }
+
+    public JToggleButton[] getDiceButtons() {
+        return diceButtons;
     }
 }
 

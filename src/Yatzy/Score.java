@@ -15,14 +15,6 @@ public class Score implements Serializable {
         this.date = LocalDate.now();
     }
 
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
     public int getScore() {
         return score;
     }

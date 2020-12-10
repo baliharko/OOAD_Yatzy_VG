@@ -7,10 +7,6 @@ public class Die {
 
     private int value;
 
-    public Die(){
-        roll();
-    }
-
     public void roll(){
         value = random.nextInt(6) + 1;
     }
