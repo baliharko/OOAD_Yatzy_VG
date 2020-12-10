@@ -71,6 +71,9 @@ public class Controller {
     public void setUpRollButtonListener(){
         window.getYatzyPanel().getRollButton().addActionListener(l -> {
             changeButtonStates(true);
+            if(window.getYatzyPanel().getRollButton().getText().equals("Avsluta")){
+                System.exit(0);
+            }
             Die[] dice = game.rollDice();
             JToggleButton[] toggleButtons = getDiceButtons();
             for (int i = 0; i < dice.length; i++) {
@@ -182,5 +185,7 @@ public class Controller {
             game.database.addScore(new Score(game.getPlayerName(), game.getCurrentScore()));
             game.database.saveData();
         }
+
+        window.getYatzyPanel().getRollButton().setText("Avsluta");
     }
 }

@@ -30,10 +30,8 @@ public abstract class Game {
         for (int i = 0; i < dice.length; i++) {
             if (!toggleButtons[i].isSelected()) {
                 dice[i].roll();
-                System.out.println("Dice " + i + " : " + dice[i].getValue());
             }
         }
-
         if (isFirstRound) {
             this.currentRound = 0;
             this.currentThrow = 0;
@@ -43,9 +41,6 @@ public abstract class Game {
             if (currentThrow == 0)
                 currentRound++;
         }
-
-        System.out.println("currentThrow = " + currentThrow);
-        System.out.println("currentRound = " + currentRound);
         return dice;
     }
 
