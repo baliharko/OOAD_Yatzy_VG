@@ -2,20 +2,24 @@ package Yatzy;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HighScoreWindow extends JFrame {
 
     private JPanel topPanel = new JPanel();
+    private JPanel bottomPanel = new JPanel();
     private JLabel header = new JLabel("Scoreboard");
     private JTextArea scoreArea = new JTextArea();
     private JScrollPane sp = new JScrollPane(scoreArea);
     private List<Score> list;
+    public JButton resetButton = new JButton("Reset Scoreboard");
 
     public HighScoreWindow(List<Score> list){
         this.list = list;
         setUpScoreBoardLabel();
         setUpScoreBoard();
+        setUpBottomPanel();
         printToScoreboard();
         setUpJFrame();
     }
@@ -33,6 +37,13 @@ public class HighScoreWindow extends JFrame {
         sp.setPreferredSize(new Dimension(280,390));
         scoreArea.setFont(new Font("MonoSpaced", Font.PLAIN,14));
         add(sp,BorderLayout.CENTER);
+    }
+
+    // (added) TODO setUpBottomPanel
+    public void setUpBottomPanel() {
+        bottomPanel.setLayout(new BorderLayout());
+        bottomPanel.add(resetButton, BorderLayout.CENTER);
+        add(bottomPanel, BorderLayout.SOUTH);
     }
 
     public void printToScoreboard(){

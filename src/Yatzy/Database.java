@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.DoubleToIntFunction;
 
 public class Database {
 
@@ -72,6 +73,22 @@ public class Database {
                 e.printStackTrace();
             }
         }
+    }
+
+    // (added) TODO deleteScoreFile
+    private void deleteScoreFile() {
+        try {
+            Files.deleteIfExists(Path.of(FILEPATH));
+        } catch (IOException e) {
+            System.out.println("Could not delete file " + FILEPATH);
+            e.printStackTrace();
+        }
+    }
+
+    // (added) TODO resetScoreBoard
+    public void resetScoreBoard() {
+        deleteScoreFile();
+        listOfScores = new ArrayList<>();
     }
 
     public List<Score> getListOfScores() {
