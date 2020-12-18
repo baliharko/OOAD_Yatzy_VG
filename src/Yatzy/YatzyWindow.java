@@ -17,6 +17,7 @@ public class YatzyWindow extends JFrame {
         add(mainPanel);
         this.setLocation(300,150);
         this.setSize(530,530);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
